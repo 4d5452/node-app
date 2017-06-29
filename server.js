@@ -14,8 +14,13 @@ const server_routes = require('./server.router.js');
 const app = express();
 const log = bunyan.createLogger(bunyan_config);
 
+/* Third party extensions */
 app.use(helmet());
+
+/* Application specific routes */
 app.use('', server_routes);
+
+/* Catch all error handlers */
 app.use(notFoundHandler);
 app.use(logError);
 app.use(errorHandler);
