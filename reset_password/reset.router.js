@@ -6,14 +6,14 @@ const jsonParser = bodyParser.json();
 
 router.route('/')
   .get(function(req, res) {
-    /* request for login POST page */
-    res.sendFile(path.join(__dirname + '/login.html'));
+    /* request for reset password */
+    res.sendFile(path.join(__dirname + '/reset.html'));
   }).post(jsonParser, function(req, res) {
-    if(!req.body || !req.body.username || !req.body.password) {
+    if(!req.body || !req.body.password) {
       return res.sendStatus(400);
     }
-    /* Have a login post: */
-    res.send(req.body.username);
+    /* Have a reset-password post: */
+    res.send("POST reset-password");
   });
 
 module.exports = router;
