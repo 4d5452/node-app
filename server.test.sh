@@ -17,10 +17,10 @@ ERROR=$LOG_DIR/"error.log"
 INFO=$LOG_DIR/"info.log"
 DEBUG=$LOG_DIR/"debug.log"
 
-# if a file is open by a process running the comand node is true,
-#  inform user to terminate and exit.
+# if a file is open by a running process the command node is true,
+#  inform user and terminate.
 if [[ `lsof -c node | grep "$LOG_DIR"` ]]; then
-  echo "Logs open by another process.  Please terminate!"
+  echo "Logs open by another process.  Ending test!"
   exit
 else
   echo "Clearing logs"
