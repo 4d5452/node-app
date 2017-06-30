@@ -55,11 +55,23 @@ fi
 printf "\nTesting connection\n"
 nc -znv $HOST $PORT
 
-# Check for http response
-printf "\nRequesting valid response from server\n"
+# Check for http response at server index '/'
+printf "\nPing server\n"
 curl $HOST:$PORT -D -
 printf "\n"
 
+# GET login page
+printf "\nGet Login Page\n"
+curl $HOST:$PORT/login -D -
+printf "\n"
+
+# POST login page: missing key => 'password'
+printf "\nPOST Login Page\n"
+curl -H "Content-Type: application/json" -X POST -d \
+  '{"username"' $HOST:$PORT/login -D -
+printf "\n"
+
+# Request known invalid endpoint
 printf "\nRequesting invalid response from server\n"
 curl $HOST:$PORT/bad-request.html -D -
 printf "\n"

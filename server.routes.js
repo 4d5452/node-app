@@ -6,7 +6,8 @@ const logout = require('./logout/logout.router.js');
 const reset_password = require('./reset_password/reset.router.js');
 
 router.get('/', function (req, res) {
-  res.send('App Index');
+  req.log.info("Server Ping");
+  res.send(`Hello ${req.ip}`);
 });
 
 router.use('/login', login);
