@@ -20,7 +20,7 @@ const bunyan = require('bunyan');
 const LOG_FOLDER_PATH = './logs';
 const ERROR_PERIOD = "hourly";
 const INFO_PERIOD = "hourly";
-const DEBUG_PERIOD = "60000ms"
+const DEBUG_PERIOD = "60000ms" // 60secs
 
 module.exports = (name) => {
   return {
