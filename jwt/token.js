@@ -4,19 +4,22 @@
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
 
+const key_dir = __dirname + '/keys'
+
 const algorithms = ["RS256"];
 const audience = "";
 const cert_priv = fs.readFileSync(key_dir + '/rsa-key');
 const cert_pub = fs.readFileSync(key_dir + '/rsa-key.pem.pub');
 const expiresIn = "1h"; /* zeit/ms */
 const issuer = "";
-const key_dir = __dirname + '/keys'
 const subject = "";
 
-module.exports = {
-  sign: (data) => sign(data),
-  verify: (token) => verify(token),
-  decode: (token) => decode(token)
+module.exports = () => {
+  return {
+    sign: (data) => sign(data),
+    verify: (token) => verify(token),
+    decode: (token) => decode(token)
+  }
 };
 
 function sign(data) {
@@ -31,7 +34,7 @@ function sign(data) {
     /* sign and return the jwt, error otherwise */
     jwt.sign(payload, cert_priv, options, function(err, token) {
       if(err) {
-        reject("Failure signing jwt");
+        reject(err);
       } else {
         resolve(token);
       }
@@ -48,7 +51,7 @@ function verify(token) {
     /* verify the jwt, error otherwise */
     jwt.verify(token, cert_pub, function(err, decoded) {
       if(err) { 
-        reject("Token not valid");
+        reject(err);
       } else {
         resolve(token);
       }
