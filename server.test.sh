@@ -6,6 +6,7 @@ CUR_DIR=$(pwd)
 HOST='127.0.0.1'
 PORT=2048
 SERVER=$CUR_DIR/"server.js"
+BUNYAN=$CUR_DIR/"node_modules/.bin/bunyan"
 
 TIMER=1 ### secs
 START=$(date +"%s")
@@ -65,10 +66,10 @@ printf "\n"
 
 printf "\nPrinting logs\n"
 printf "\nError Log\n"
-cat $ERROR
+$BUNYAN $ERROR
 
 printf "\nInfo Log\n"
-cat $INFO
+$BUNYAN $INFO
 
 # kill server process
 printf "\nKilling Process with ID := %s\n" "${PROC[0]}"
