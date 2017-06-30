@@ -15,7 +15,8 @@ const subject = "";
 
 module.exports = {
   sign: (data) => sign(data),
-  verify: (token) => verify(token)
+  verify: (token) => verify(token),
+  decode: (token) => decode(token)
 };
 
 function sign(data) {
@@ -55,3 +56,11 @@ function verify(token) {
   }); // end promise
   return promise;
 } // end verify
+
+function decode(token) {
+  const promise = new Promise((resolve, reject) => {
+    let decoded = jwt.decode(token, { complete: true });
+    resolve(decoded);
+  }); // end promise
+  return promise;
+} // end decode
