@@ -4,13 +4,13 @@
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
 
-const key_dir = __dirname + '/keys'
+const algorithms = ["RS256"];
+const audience = "";
 const cert_priv = fs.readFileSync(key_dir + '/rsa-key');
 const cert_pub = fs.readFileSync(key_dir + '/rsa-key.pem.pub');
-const algorithms = ["RS256"];
 const expiresIn = "1h"; /* zeit/ms */
-const audience = "";
 const issuer = "";
+const key_dir = __dirname + '/keys'
 const subject = "";
 
 module.exports = {
