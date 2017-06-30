@@ -9,7 +9,7 @@ const server_config = require('./server.config.js')();
 const bunyan_config = require('./bunyan.config.js')(server_config.name);
 
 /* routes */
-const server_routes = require('./server.router.js');
+const server_routes = require('./server.routes.js');
 
 const app = express();
 const log = bunyan.createLogger(bunyan_config);
