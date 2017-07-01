@@ -30,7 +30,7 @@ router.post('/', jsonParser,
         .send("Bad Request: Must provide valid username AND password");
     }
     /* Confirm user exist */
-
+    
     /* Confirm user provided proper password */
 
     res.send(`Username: ${uname}, Password: ${psw}`);

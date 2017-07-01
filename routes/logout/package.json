@@ -1,0 +1,4 @@
+{
+  "name": "logout",
+  "main": "./logout.router.js"
+}
