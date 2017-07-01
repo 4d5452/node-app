@@ -4,6 +4,9 @@ const express = require('express');
 const helmet = require('helmet');
 const path = require('path');
 
+/* set a global path to server entry: server.js */
+global.__base = path.join(__dirname + '/');
+
 /* config files */
 const server_config = require('./server.config.js')();
 const bunyan_config = require('./bunyan.config.js')(server_config.name);

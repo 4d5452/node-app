@@ -78,7 +78,7 @@ curl -H "Content-Type: application/json" -X POST -d \
 printf "\n"
 
 # Request known invalid endpoint
-printf "\nRequesting invalid response from server\n"
+printf "\nRequesting non-existent page from server\n"
 curl $HOST:$PORT/bad-request.html -D -
 printf "\n"
 
