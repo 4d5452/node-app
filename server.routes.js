@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const login = require('./login/login.router.js');
-const logout = require('./logout/logout.router.js');
-const reset_password = require('./reset_password/reset.router.js');
+const routes_dir = __dirname + '/routes';
+const login = require(routes_dir + '/login/login.router.js');
+const logout = require(routes_dir + '/logout/logout.router.js');
+const reset_password = require(routes_dir + '/reset_password/reset.router.js');
 
 router.get('/', function (req, res) {
   req.log.info("Server Ping");
