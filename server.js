@@ -28,6 +28,7 @@ app.listen(server_config.port, server_config.host, function() {
   log.info(`Started ${server_config.host} on port: ${server_config.port}`);
 });
 
+/************************************FUNCTIONS**********************/
 /* Log for all request */
 function appendLog(req, res, next) {
   req.log = log.child({ 
