@@ -71,10 +71,16 @@ curl -H "Content-Type: application/json" -X POST -d \
   '{"username"' $HOST:$PORT/login -D -
 printf "\n"
 
-# POST login page: username:password
-printf "\nPOST Login Page\n"
+# POST login page (bad): username:password
+printf "\nPOST Login Page (bad)\n"
 curl -H "Content-Type: application/json" -X POST -d \
   '{"username":"JIM", "password":"MIJ"}' $HOST:$PORT/login -D -
+printf "\n"
+
+# POST login page (good): username:password
+printf "\nPOST Login Page (good)\n"
+curl -H "Content-Type: application/json" -X POST -d \
+  '{"username":"JIM", "password":"123456"}' $HOST:$PORT/login -D -
 printf "\n"
 
 # Request known invalid endpoint
