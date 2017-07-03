@@ -5,9 +5,6 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 const validate = require(__base + '/lib/validate')();
 
-/* Create log entry for all request to this route */
-router.all('*', log);
-
 router.get('/', function(req, res) {
   res.sendFile(path.join(__dirname + '/login.html'));
 }); // end router.get
@@ -21,8 +18,8 @@ router.post('/', jsonParser,
         .send("Bad Request: Must provide username AND password");
     } // end if
     /* Validate and set the username and password */
-    let uname = validate.username(req.body.username) ? req.body.username : null;
-    let psw = validate.password(req.body.password) ? req.body.password : null;
+    let uname = validate.username(req.body.username);
+    let psw = validate.password(req.body.password);
     if(!uname || !psw) {
       /* username or password failed to validate */
       req.log.warn("FAILED_LOGIN: validation");
@@ -32,7 +29,7 @@ router.post('/', jsonParser,
     /* Confirm user exist */
     
     /* Confirm user provided proper password */
-
+    req.log.info("LOGIN");
     res.send(`Username: ${uname}, Password: ${psw}`);
   }, 
   function(err, req, res, next) { // handle errors
@@ -47,8 +44,3 @@ router.post('/', jsonParser,
 module.exports = router;
 
 /******************************FUNCTIONS*******************************/
-/* Log login attempts */
-function log(req, res, next) {
-  req.log.info("LOGIN");
-  next();
-}
